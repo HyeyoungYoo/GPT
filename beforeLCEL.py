@@ -28,8 +28,6 @@
     "\n",
     "chat.predict(prompt)\n",
     "\n",
-    "\n",
-    "\n",
     "#b = chat.predict(\"How many planets are there?\")"
    ]
   },
@@ -71,20 +69,54 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 13,
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['Hello', 'how', 'are', 'you']"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
    "source": [
-    "from Langchain.schema import BaseOutputParser\n",
+    "from langchain.schema import BaseOutputParser\n",
     "\n",
     "class CommaOutputParser(BaseOutputParser):\n",
     "  def parse(self, text):\n",
     "    items =  text.strip().split(\",\")  # strip : text 앞뒤 공백을 잘라냄\n",
-    "    return list(map(str.strip, items))\n",
+    "    return list(map(str.strip, items))\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['Pikachu', 'Charizard', 'Bulbasaur', 'Squirtle', 'Jigglypuff']"
+      ]
+     },
+     "execution_count": 20,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "template = ChatPromptTemplate.from_messages([\n",
+    "  (\"system\",\"You are a list generating machine. Everything you are asked will be answered with an comma seperated list of {max_items}. Do NOT relpy with anthing else\"),\n",
+    "  (\"human\",\"{question}\"),\n",
+    "])\n",
     "\n",
-    "p = CommaOutputParser()\n",
+    "chain = template | chat | CommaOutputParser()\n",
     "\n",
-    "p.parse(\"Hello, how, are, you\")\n"
+    "chain.invoke({\"max_items\":5, \"question\":\"What are the Pokemons?\"})"
    ]
   }
  ],
