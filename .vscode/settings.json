@@ -1,0 +1,8 @@
+{
+  "editor.wordWrap": "on",
+  "notebook.output.wordWrap": true,
+  "chat.editor.wordWrap": "on",
+  "notebook.editorOptionsCustomizations": {
+    
+  }
+}
