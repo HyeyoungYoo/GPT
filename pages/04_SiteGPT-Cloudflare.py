@@ -115,14 +115,14 @@ def parse_page(soup): #포함시킼고 싶은 text를 반환하는 함수.
 def load_website(url):
     splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
       chunk_size=1000,
-      chunk_overlap=200,
+      chunk_overlap=100,
     )
     loader = SitemapLoader(
       url,
       parsing_function=parse_page,
       filter_urls=["https://developers.cloudflare.com/ai-gateway/","https://developers.cloudflare.com/vectorize/","https://developers.cloudflare.com/workers-ai/"],
       )      
-    loader.requests_per_second = 1  # 차단 방지를 위해 1초에 한번 request 보내도록 강제
+    loader.requests_per_second = 2  # 차단 방지를 위해 1초에 한번 request 보내도록 강제
     docs = loader.load_and_split(text_splitter=splitter) 
     vector_store = FAISS.from_documents(docs, embedding=OpenAIEmbeddings(openai_api_key=key))
     #cache 할 수 있음. 그러나 각각의 URL 마다 별도로 cache를 만들어야함.
