@@ -120,6 +120,7 @@ def load_website(url):
     loader = SitemapLoader(
       url,
       parsing_function=parse_page,
+      filter_urls=["https://developers.cloudflare.com/ai-gateway/","https://developers.cloudflare.com/vectorize/","https://developers.cloudflare.com/workers-ai/"],
       )      
     loader.requests_per_second = 1  # 차단 방지를 위해 1초에 한번 request 보내도록 강제
     docs = loader.load_and_split(text_splitter=splitter) 

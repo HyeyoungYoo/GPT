@@ -20,6 +20,5 @@ Here are the apps I made:
 - [ ] [MeetingGPT](/MeetingGPT)
 - [ ] [InvestorGPT](/InvestorGPT)
 
-<Challange!> Cloudflare 공식문서
 """
 )
