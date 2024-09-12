@@ -1,0 +1,7 @@
+The XZ backdoor refers to a malicious backdoor that was introduced to the Linux utility xz within the liblzma library in versions 5.6.0 and 5.6.1 by an account using the name "Jia Tan" in February 2024. The backdoor allows an attacker with a specific Ed448 private key to execute remote code on the affected Linux system. This issue has been assigned the Common Vulnerabilities and Exposures number CVE-2024-3094 and has a CVSS score of 10.0, the highest possible score. The backdoor was discovered by software developer Andres Freund, who disclosed his findings on March 29, 2024.
+
+XZ Utils, previously known as LZMA Utils, is a set of free software command-line lossless data compressors that include programs like lzma and xz for Unix-like operating systems and Microsoft Windows. The software uses the Lempel–Ziv–Markov chain algorithm (LZMA) for compression and decompression.
+
+A backdoor in computing is a covert method of bypassing normal authentication or encryption in a computer system. It can be used for securing remote access, obtaining plaintext in cryptosystems, gaining access to privileged information, corrupting or deleting data, or transferring information within networks. Backdoors can take various forms, such as hidden parts of a program, separate programs, firmware code, or parts of an operating system.
+
+If you would like more information or details on a specific aspect of the XZ backdoor, feel free to ask.
