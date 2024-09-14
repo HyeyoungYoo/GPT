@@ -1,7 +1,22 @@
-The XZ backdoor refers to a malicious backdoor that was introduced to the Linux utility xz within the liblzma library in versions 5.6.0 and 5.6.1 by an account using the name "Jia Tan" in February 2024. The backdoor allows an attacker with a specific Ed448 private key to execute remote code on the affected Linux system. This issue has been assigned the Common Vulnerabilities and Exposures number CVE-2024-3094 and has a CVSS score of 10.0, the highest possible score. The backdoor was discovered by software developer Andres Freund, who disclosed his findings on March 29, 2024.
+# XZ Backdoor Research
 
-XZ Utils, previously known as LZMA Utils, is a set of free software command-line lossless data compressors that include programs like lzma and xz for Unix-like operating systems and Microsoft Windows. The software uses the Lempel–Ziv–Markov chain algorithm (LZMA) for compression and decompression.
+## Overview
+The XZ backdoor refers to a malicious backdoor introduced into the XZ Utils, a popular open-source compression utility for Linux/UNIX systems. The backdoor was discovered in February 2024 and is associated with the Common Vulnerabilities and Exposures (CVE) number CVE-2024-3094, receiving a CVSS score of 10.0, the highest possible score.
 
-A backdoor in computing is a covert method of bypassing normal authentication or encryption in a computer system. It can be used for securing remote access, obtaining plaintext in cryptosystems, gaining access to privileged information, corrupting or deleting data, or transferring information within networks. Backdoors can take various forms, such as hidden parts of a program, separate programs, firmware code, or parts of an operating system.
+## Background
+- **Discovery**: The backdoor was discovered by Andres Freund, a Microsoft employee and PostgreSQL developer, on March 29, 2024, while investigating performance issues in Debian Sid.
+- **Perpetrator**: The backdoor was introduced by an account using the name "Jia Tan". It is suspected that this name, along with others associated with the campaign, are pseudonyms.
+- **Timeline**: The campaign to insert the backdoor spanned approximately three years, from November 2021 to February 2024.
 
-If you would like more information or details on a specific aspect of the XZ backdoor, feel free to ask.
+## Mechanism
+- **Functionality**: The backdoor allows an attacker with a specific Ed448 private key to execute remote code on affected systems. It alters the behavior of OpenSSH's SSH server daemon, enabling unauthorized access.
+- **Dormancy**: The malicious code remains dormant unless a specific third-party patch of the SSH server is used.
+- **Injection Method**: The backdoor consists of multiple stages and uses the glibc IFUNC mechanism to replace an existing function in OpenSSH with a malicious version.
+
+## Response
+- **Remediation**: The US Cybersecurity and Infrastructure Security Agency (CISA) issued a security advisory recommending rolling back to previous uncompromised versions. Major Linux distributions reverted affected packages to older versions.
+- **Broader Impact**: The incident raised discussions about the reliance on unpaid volunteers for critical software infrastructure and highlighted the potential for widespread impact had the backdoor gone undetected.
+
+## References
+- Wikipedia: [XZ Utils backdoor](https://en.wikipedia.org/wiki/XZ_Utils_backdoor)
+- DuckDuckGo: Various articles discussing the XZ backdoor and its implications.
